@@ -13,7 +13,7 @@ public class TaskConverter {
             .title(task.getTitle())
             .description(task.getDescription())
             .status(task.getStatus())
-            .dueDate(task.getDueDate().toString())
+            .dueDate(task.getDueDate())
             .createdAt(task.getCreatedAt().toLocalDateTime())
             .updatedAt(task.getUpdatedAt().toLocalDateTime())
             .build();

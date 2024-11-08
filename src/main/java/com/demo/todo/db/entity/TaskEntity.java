@@ -12,7 +12,7 @@ import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.sql.Timestamp;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
 @Entity(name = "TASK")
@@ -39,7 +39,7 @@ public class TaskEntity {
     private TaskStatus status;
     
     @Column(columnDefinition = "DATE")
-    private Date dueDate;
+    private LocalDate dueDate;
     
     @Column(insertable = false, updatable = false)
     @CreationTimestamp
