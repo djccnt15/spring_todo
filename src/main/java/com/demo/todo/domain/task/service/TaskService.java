@@ -9,6 +9,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.util.List;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -27,7 +30,15 @@ public class TaskService {
         return taskRepository.save(taskEntity);
     }
     
+    public List<TaskEntity> getAllTask() {
+        return taskRepository.findAll();
+    }
+    
     public TaskEntity getById(Long id) {
         return taskUtils.getById(id);
+    }
+    
+    public List<TaskEntity> getByDueDate(LocalDate dueDate) {
+        return taskRepository.findByDueDate(dueDate);
     }
 }

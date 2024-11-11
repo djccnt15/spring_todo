@@ -8,6 +8,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
+
 @Slf4j
 @RestController
 @RequestMapping(path = "/tasks")
@@ -35,5 +39,20 @@ public class TaskController {
     @GetMapping(path = "/{id}")
     public ResponseEntity<TaskResponse> getTask(@PathVariable Long id) {
         return ResponseEntity.ok(business.getById(id));
+    }
+    
+    /**
+     * get tasks by due date
+     * @param dueDate due date
+     * @return list of searched tasks
+     */
+    @GetMapping
+    public ResponseEntity<List<TaskResponse>> getTaskByDueDate(Optional<LocalDate> dueDate) {
+        if (dueDate.isPresent()) {
+            var result = business.getByDueDate(dueDate.get());
+            return ResponseEntity.ok(result);
+        }
+        var response = business.getAll();
+        return ResponseEntity.ok(response);
     }
 }
