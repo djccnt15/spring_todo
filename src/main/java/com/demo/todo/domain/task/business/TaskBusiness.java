@@ -18,4 +18,9 @@ public class TaskBusiness {
         var entity = service.create(request);
         return converter.toResponse(entity);
     }
+    
+    public TaskResponse getById(Long id) {
+        var taskEntity = service.getById(id);
+        return converter.toResponse(taskEntity);
+    }
 }

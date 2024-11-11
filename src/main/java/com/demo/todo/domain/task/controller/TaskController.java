@@ -26,4 +26,14 @@ public class TaskController {
         var response = business.create(request);
         return ResponseEntity.ok(response);
     }
+    
+    /**
+     * get task by id
+     * @param id task id
+     * @return task
+     */
+    @GetMapping(path = "/{id}")
+    public ResponseEntity<TaskResponse> getTask(@PathVariable Long id) {
+        return ResponseEntity.ok(business.getById(id));
+    }
 }
