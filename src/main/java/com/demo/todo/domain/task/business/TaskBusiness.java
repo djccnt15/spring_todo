@@ -9,6 +9,7 @@ import com.demo.todo.enums.TaskStatus;
 import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 
 @Business
@@ -44,5 +45,10 @@ public class TaskBusiness {
         return service.getByStatus(status).stream()
             .map(converter::toResponse)
             .toList();
+    }
+    
+    public List<TaskStatus> getAllStatus() {
+        var statusList = TaskStatus.values();
+        return Arrays.stream(statusList).toList();
     }
 }

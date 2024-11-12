@@ -67,4 +67,13 @@ public class TaskController {
         var taskList = business.getByStatus(status);
         return ResponseEntity.ok(taskList);
     }
+    
+    /**
+     * @return task status list
+     */
+    @GetMapping(path = "/status")
+    public ResponseEntity<List<TaskStatus>> getAllStatus() {
+        var statusList = business.getAllStatus();
+        return ResponseEntity.ok(statusList);
+    }
 }
