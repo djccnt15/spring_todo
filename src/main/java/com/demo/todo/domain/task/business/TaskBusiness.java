@@ -5,6 +5,7 @@ import com.demo.todo.domain.task.converter.TaskConverter;
 import com.demo.todo.domain.task.model.TaskRequest;
 import com.demo.todo.domain.task.model.TaskResponse;
 import com.demo.todo.domain.task.service.TaskService;
+import com.demo.todo.enums.TaskStatus;
 import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDate;
@@ -35,6 +36,12 @@ public class TaskBusiness {
     
     public List<TaskResponse> getByDueDate(LocalDate dueDate) {
         return service.getByDueDate(dueDate).stream()
+            .map(converter::toResponse)
+            .toList();
+    }
+    
+    public List<TaskResponse> getByStatus(TaskStatus status) {
+        return service.getByStatus(status).stream()
             .map(converter::toResponse)
             .toList();
     }

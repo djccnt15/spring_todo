@@ -41,4 +41,8 @@ public class TaskService {
     public List<TaskEntity> getByDueDate(LocalDate dueDate) {
         return taskRepository.findByDueDate(dueDate);
     }
+    
+    public List<TaskEntity> getByStatus(TaskStatus status) {
+        return taskRepository.findByStatus(status);
+    }
 }

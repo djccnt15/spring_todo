@@ -3,6 +3,7 @@ package com.demo.todo.domain.task.controller;
 import com.demo.todo.domain.task.business.TaskBusiness;
 import com.demo.todo.domain.task.model.TaskRequest;
 import com.demo.todo.domain.task.model.TaskResponse;
+import com.demo.todo.enums.TaskStatus;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -54,5 +55,16 @@ public class TaskController {
         }
         var response = business.getAll();
         return ResponseEntity.ok(response);
+    }
+    
+    /**
+     * get tasks by status
+     * @param status status
+     * @return list of searched tasks
+     */
+    @GetMapping(path = "/status/{status}")
+    public ResponseEntity<List<TaskResponse>> getTaskByStatus(@PathVariable TaskStatus status) {
+        var taskList = business.getByStatus(status);
+        return ResponseEntity.ok(taskList);
     }
 }
