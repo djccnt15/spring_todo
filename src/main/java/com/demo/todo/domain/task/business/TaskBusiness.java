@@ -4,6 +4,7 @@ import com.demo.todo.annotations.Business;
 import com.demo.todo.domain.task.converter.TaskConverter;
 import com.demo.todo.domain.task.model.TaskRequest;
 import com.demo.todo.domain.task.model.TaskResponse;
+import com.demo.todo.domain.task.model.TaskStatusRequest;
 import com.demo.todo.domain.task.service.TaskService;
 import com.demo.todo.enums.TaskStatus;
 import lombok.RequiredArgsConstructor;
@@ -50,5 +51,15 @@ public class TaskBusiness {
     public List<TaskStatus> getAllStatus() {
         var statusList = TaskStatus.values();
         return Arrays.stream(statusList).toList();
+    }
+    
+    public TaskResponse updateTask(Long id, TaskRequest task) {
+        var taskEntity = service.updateTask(id, task);
+        return converter.toResponse(taskEntity);
+    }
+    
+    public TaskResponse updateTaskStatus(Long id, TaskStatusRequest statusRequest) {
+        var taskEntity = service.updateTaskStatus(id, statusRequest);
+        return converter.toResponse(taskEntity);
     }
 }

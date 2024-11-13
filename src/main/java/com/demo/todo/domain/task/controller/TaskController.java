@@ -3,6 +3,7 @@ package com.demo.todo.domain.task.controller;
 import com.demo.todo.domain.task.business.TaskBusiness;
 import com.demo.todo.domain.task.model.TaskRequest;
 import com.demo.todo.domain.task.model.TaskResponse;
+import com.demo.todo.domain.task.model.TaskStatusRequest;
 import com.demo.todo.enums.TaskStatus;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -75,5 +76,35 @@ public class TaskController {
     public ResponseEntity<List<TaskStatus>> getAllStatus() {
         var statusList = business.getAllStatus();
         return ResponseEntity.ok(statusList);
+    }
+    
+    /**
+     * update task by id
+     * @param id task id to update
+     * @param task task data
+     * @return updated task data
+     */
+    @PutMapping(path = "/{id}")
+    public ResponseEntity<TaskResponse> updateTask(
+        @PathVariable Long id,
+        @RequestBody TaskRequest task
+    ) {
+        var response = business.updateTask(id, task);
+        return ResponseEntity.ok(response);
+    }
+    
+    /**
+     * update task status
+     * @param id task id to update
+     * @param statusRequest status
+     * @return update task data
+     */
+    @PatchMapping(path = "/{id}/status")
+    public ResponseEntity<TaskResponse> updateTaskStatus(
+        @PathVariable Long id,
+        @RequestBody TaskStatusRequest statusRequest
+        ) {
+        var response = business.updateTaskStatus(id, statusRequest);
+        return ResponseEntity.ok(response);
     }
 }
