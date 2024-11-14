@@ -62,4 +62,8 @@ public class TaskBusiness {
         var taskEntity = service.updateTaskStatus(id, statusRequest);
         return converter.toResponse(taskEntity);
     }
+    
+    public boolean deleteTask(Long id) {
+        return service.deleteTask(id);
+    }
 }

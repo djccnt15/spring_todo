@@ -70,4 +70,14 @@ public class TaskService {
         taskEntity.setStatus(statusRequest.getStatus());
         return taskRepository.save(taskEntity);
     }
+    
+    public boolean deleteTask(Long id) {
+        try {
+            taskRepository.deleteById(id);
+        } catch (Exception e) {
+            log.error("an error raised for deleting task: {}", e.toString());
+            return false;
+        }
+        return true;
+    }
 }

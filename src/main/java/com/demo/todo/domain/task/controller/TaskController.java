@@ -1,6 +1,7 @@
 package com.demo.todo.domain.task.controller;
 
 import com.demo.todo.domain.task.business.TaskBusiness;
+import com.demo.todo.domain.task.model.ResultResponse;
 import com.demo.todo.domain.task.model.TaskRequest;
 import com.demo.todo.domain.task.model.TaskResponse;
 import com.demo.todo.domain.task.model.TaskStatusRequest;
@@ -106,5 +107,16 @@ public class TaskController {
         ) {
         var response = business.updateTaskStatus(id, statusRequest);
         return ResponseEntity.ok(response);
+    }
+    
+    /**
+     * delete task
+     * @param id task id to delete
+     * @return delete result
+     */
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity<ResultResponse> deleteTask(@PathVariable Long id) {
+        var response = business.deleteTask(id);
+        return ResponseEntity.ok(new ResultResponse(response));
     }
 }
