@@ -21,8 +21,9 @@ public class TaskBusiness {
     private final TaskConverter converter;
 
     public TaskResponse create(TaskRequest request) {
-        var entity = service.create(request);
-        return converter.toResponse(entity);
+        var entity = converter.toEntity(request);
+        var taskEntity = service.create(entity);
+        return converter.toResponse(taskEntity);
     }
     
     public TaskResponse getById(Long id) {

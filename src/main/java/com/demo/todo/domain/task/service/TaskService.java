@@ -23,14 +23,8 @@ public class TaskService {
     private final TaskRepository taskRepository;
     private final TaskUtils taskUtils;
 
-    public TaskEntity create(TaskRequest request) {
-        var taskEntity = TaskEntity.builder()
-            .title(request.getTitle())
-            .description(request.getDescription())
-            .dueDate(request.getDueDate())
-            .status(TaskStatus.TODO)
-            .build();
-        return taskRepository.save(taskEntity);
+    public TaskEntity create(TaskEntity entity) {
+        return taskRepository.save(entity);
     }
     
     public List<TaskEntity> getAllTask() {
